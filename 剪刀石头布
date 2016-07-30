@@ -1,0 +1,113 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+void main()
+{
+	int a[2][100];
+
+	int com,user,n,m,i=0,j=0,k=0;
+
+	char c;
+
+	srand((unsigned)time(NULL)); 
+	
+	printf("游戏规则：该游戏为4局3胜\n");
+
+	printf("先胜3局为最终胜者\n");
+	
+	printf("进入游戏\n");
+
+	do{
+		printf("请出拳（1.剪刀、2.石头、3.布）:");
+		scanf("%d",&user);
+
+		if(user<0||user>3) printf("输入有误，请重新输入"); 
+
+		else{ 
+
+		com=rand()%3+1;                                    	
+	
+		printf("玩家出%s 电脑出%s\n",user==1?"剪刀":user==2?"石头":"布",com==1?"剪刀":com==2?"石头":"布");
+		
+		}
+
+	switch(com-user)                                  
+	{ 
+	case 0:	
+		printf("本局平手\n");
+		i++;
+		break;	
+	case 1:
+	case -2:
+		printf("本局电脑赢了\n");
+		j++;
+		break;
+	case -1:
+	case 2:			
+		printf("本局玩家赢了\n");
+		k++;
+	}
+   
+	
+	if(j==3) printf("玩家输了!!! 游戏结束\n"); 
+
+	else{
+
+		while(i+j+k==4){
+				
+		if(j==3) printf("玩家输了!!! 游戏结束\n");
+
+	    if(k==3) printf("玩家赢了!!! 游戏结束\n");
+
+		if(k>j) printf("玩家赢了!!! 游戏结束\n");
+
+	   else if(k==j) printf("平手!!! 游戏结束\n");
+
+	   else printf("玩家输了!!! 游戏结束\n");
+       
+	}
+	}
+
+	if(k==3) printf("玩家赢了!!! 游戏结束\n"); 
+
+	else{
+
+    while(i+j+k==4){
+				
+		if(j==3) printf("玩家输了!!! 游戏结束\n");
+
+	    if(k==3) printf("玩家赢了!!! 游戏结束\n");
+
+		if(k>j) printf("玩家赢了!!! 游戏结束\n");
+
+	   else if(k==j) printf("平手!!! 游戏结束\n");
+
+	   else printf("玩家输了!!! 游戏结束\n");
+       
+	}
+	}
+
+
+	}
+while(i+j+k<4);
+
+	for(n=0;n<2;n++){
+
+		for(m=0;m<100;m++)
+
+			a[n][m]=a[n][i+j+k];
+
+	}	
+
+printf("输出比赛分数：\n");
+
+for(n=0;n<2;n++){
+
+	for(m=0;m<100;m++)
+
+		printf("%6d",a[n][m]);
+
+	printf("\n");
+}
+  
+}
